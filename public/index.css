@@ -1,0 +1,73 @@
+/* index.css */
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f4f4f4;
+    margin: 0;
+}
+
+.container {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 400px;
+    height: 500px;
+    overflow-y: auto;
+}
+
+.msg {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.messages {
+    margin-bottom: 20px;
+    max-height: 400px;  /* Prevents the messages section from growing too large */
+    overflow-y: auto;   /* Adds scrolling if the messages container exceeds max-height */
+}
+
+.msgCtn {
+    background-color: #efefef; /* Light gray background */
+    color: #333;  /* Darker text for better contrast */
+    margin-bottom: 5px;
+    padding: 10px;
+    border-radius: 4px;
+    font-size: 16px; /* Ensure the font size is readable */
+    line-height: 1.5;
+    word-wrap: break-word; /* Wrap text if it's too long */
+}
+
+input.input {
+    width: calc(100% - 80px);
+    padding: 8px;
+    margin-right: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+input.btn {
+    padding: 8px 15px;
+    border: none;
+    background-color: #5cb85c;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+input.btn:hover {
+    background-color: #4cae4c;
+}
+div:not(.messages):not(.msgCtn):not(.container) {
+      background-color: #efefef; /* Light gray background */
+    color: #333;  /* Darker text for better contrast */
+    margin-bottom: 5px;
+    padding: 10px;
+    border-radius: 4px;
+    font-size: 16px; /* Ensure the font size is readable */
+    line-height: 1.5;
+    word-wrap: break-word; /* Wrap text if it's too long */
+}
