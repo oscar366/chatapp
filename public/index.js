@@ -8,6 +8,8 @@ const firebaseConfig = {
 
   authDomain: "chato-saurus.firebaseapp.com",
 
+  databaseURL: "https://chato-saurus-default-rtdb.firebaseio.com",
+
   projectId: "chato-saurus",
 
   storageBucket: "chato-saurus.firebasestorage.app",
