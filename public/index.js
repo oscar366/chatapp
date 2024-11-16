@@ -1,58 +1,51 @@
-import { initializeApp } from "firebase/app";
-import { getDatabase, ref, set, onValue } from "firebase/database";
+// Import Firebase modules
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js";
+import { getDatabase, ref, push, onChildAdded } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-database.js";
 
-// Your web app's Firebase configuration
+// Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+
 const firebaseConfig = {
-
   apiKey: "AIzaSyBoBnit2wTxsVkufCOOJUHj6dThGaVfu0k",
-
   authDomain: "chato-saurus.firebaseapp.com",
-
   databaseURL: "https://chato-saurus-default-rtdb.firebaseio.com",
-
   projectId: "chato-saurus",
-
   storageBucket: "chato-saurus.firebasestorage.app",
-
   messagingSenderId: "1083073882669",
-
   appId: "1:1083073882669:web:6cc8bc8216337149e466a4",
-
   measurementId: "G-YDRLK45H7N"
-
 };
-
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
 
-// Chat functionality in index.js
-const messagesRef = ref(db, 'messages/');
+// Handle form submission
+const form = document.getElementById("msgForm");
+const messagesDiv = document.getElementById("messages");
 
-// When a new message is sent
-function sendMessage(msg) {
-  const newMessageRef = ref(db, 'messages/' + Date.now());
-  set(newMessageRef, {
-    username: username,   // Use the prompt username
-    message: msg,
-    timestamp: Date.now()
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
+
+  const inputBox = document.getElementById("inputBox");
+  const message = inputBox.value;
+
+  if (message.trim() === "") return;
+
+  // Push the message to the database
+  push(ref(db, "messages"), {
+    message: message,
+    timestamp: Date.now(),
   });
-}
 
-// Listen for new messages
-onValue(messagesRef, (snapshot) => {
-  const messages = snapshot.val();
-  displayMessages(messages);
+  inputBox.value = ""; // Clear the input box
 });
 
-function displayMessages(messages) {
-  const messageContainer = document.getElementById("messages");
-  messageContainer.innerHTML = ''; // Clear previous messages
-  for (const key in messages) {
-    const message = messages[key];
-    const messageDiv = document.createElement('div');
-    messageDiv.textContent = `${message.username}: ${message.message}`;
-    messageContainer.appendChild(messageDiv);
-  }
-}
+// Listen for new messages in the database
+onChildAdded(ref(db, "messages"), (snapshot) => {
+  const data = snapshot.val();
+  const messageDiv = document.createElement("div");
+  messageDiv.classList.add("msgCtn");
+  messageDiv.textContent = data.message;
+  messagesDiv.appendChild(messageDiv);
+});
