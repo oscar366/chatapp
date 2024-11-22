@@ -1,10 +1,7 @@
-// Import Firebase modules
-import { initializeApp } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js";
-import { getDatabase, ref, push, onChildAdded } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-database.js";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-app.js";
+import { getDatabase, ref, push, onChildAdded } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-database.js";
 
-// Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
-
+// Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyBoBnit2wTxsVkufCOOJUHj6dThGaVfu0k",
   authDomain: "chato-saurus.firebaseapp.com",
@@ -14,9 +11,9 @@ const firebaseConfig = {
   messagingSenderId: "1083073882669",
   appId: "1:1083073882669:web:6cc8bc8216337149e466a4",
   measurementId: "G-YDRLK45H7N"
+
 };
 
-// Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
 
