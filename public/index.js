@@ -17,32 +17,42 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
 
-// Handle form submission
-const form = document.getElementById("msgForm");
-const messagesDiv = document.getElementById("messages");
+// Get the username from the user using prompt
+let username = prompt("Please enter your username:");
+if (!username) {
+  username = "Anonymous"; // If user doesn't provide a username, default to Anonymous
+}
 
-form.addEventListener("submit", (e) => {
+// Handle sending messages
+const msgForm = document.getElementById("msgForm");
+msgForm.addEventListener("submit", (e) => {
   e.preventDefault();
-
   const inputBox = document.getElementById("inputBox");
-  const message = inputBox.value;
+  const message = inputBox.value.trim();
 
-  if (message.trim() === "") return;
+  if (message === "") return;
+
+  // Modify the message by appending the username
+  const messageWithUsername = `${message} - ${username}`;
 
   // Push the message to the database
   push(ref(db, "messages"), {
-    message: message,
+    message: messageWithUsername,
     timestamp: Date.now(),
   });
 
   inputBox.value = ""; // Clear the input box
 });
 
-// Listen for new messages in the database
+// Listen for new messages
+const messagesDiv = document.getElementById("messages");
 onChildAdded(ref(db, "messages"), (snapshot) => {
   const data = snapshot.val();
   const messageDiv = document.createElement("div");
   messageDiv.classList.add("msgCtn");
-  messageDiv.textContent = data.message;
+  messageDiv.textContent = data.message; // Display the message (already includes username)
   messagesDiv.appendChild(messageDiv);
+
+  // Scroll to the latest message
+  messagesDiv.scrollTop = messagesDiv.scrollHeight;
 });
