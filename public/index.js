@@ -14,13 +14,10 @@ const firebaseConfig = {
 
 };
 
-const app = initializeApp(firebaseConfig);
-const db = getDatabase(app);
-
 // Get the username from the user using prompt
 let username = prompt("Please enter your username:");
 if (!username) {
-  username = "Anonymous"; // If user doesn't provide a username, default to Anonymous
+  username = "Anonymous"; // Default to Anonymous if no username is entered
 }
 
 // Handle sending messages
@@ -32,8 +29,8 @@ msgForm.addEventListener("submit", (e) => {
 
   if (message === "") return;
 
-  // Modify the message by appending the username
-  const messageWithUsername = `${message} - ${username}`;
+  // Format the message with bolded username
+  const messageWithUsername = `<strong>${username}:</strong> ${message}`;
 
   // Push the message to the database
   push(ref(db, "messages"), {
@@ -50,7 +47,10 @@ onChildAdded(ref(db, "messages"), (snapshot) => {
   const data = snapshot.val();
   const messageDiv = document.createElement("div");
   messageDiv.classList.add("msgCtn");
-  messageDiv.textContent = data.message; // Display the message (already includes username)
+
+  // Insert the message as HTML to render the bold username
+  messageDiv.innerHTML = data.message;
+
   messagesDiv.appendChild(messageDiv);
 
   // Scroll to the latest message
