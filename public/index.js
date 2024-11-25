@@ -14,6 +14,10 @@ const firebaseConfig = {
 
 };
 
+// Initialize Firebase app and database
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
+
 // Get the username from the user using prompt
 let username = prompt("Please enter your username:");
 if (!username) {
