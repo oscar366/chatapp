@@ -15,8 +15,31 @@
             <input type="text" placeholder="Send message" class="input" id="inputBox" />
             <input type="submit" class="btn" value="Send">
         </form>
+        <br />
+<input type="button" value="😀" id="1Ebutton" class="ebnt"/>
+<input type="button" value="😢" id="2Ebutton" class="ebnt"/>
+<input type="button" value="🐱" id="3Ebutton" class="ebnt"/>
     </div>
+    
+<script type="text/javascript">
+    //js for 😢😀🐱 buttons
+document.getElementById("1Ebutton").addEventListener('click', function () {
+    var inputBox = document.getElementById('inputBox');
+    inputBox.value += '😀';
+});
 
+document.getElementById("2Ebutton").addEventListener('click', function () {
+    var inputBox = document.getElementById('inputBox');
+    inputBox.value += '😢';
+});
+
+document.getElementById("3Ebutton").addEventListener('click', function () {
+    var inputBox = document.getElementById('inputBox');
+    inputBox.value += '🐱';
+});
+</script>
+
+    
   <script type="module" src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js"></script>
   <script type="module" src="https://www.gstatic.com/firebasejs/9.0.0/firebase-database.js"></script>
   <script type="module" src="index.js"></script>
