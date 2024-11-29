@@ -71,3 +71,15 @@ div:not(.messages):not(.msgCtn):not(.container) {
     line-height: 1.5;
     word-wrap: break-word; /* Wrap text if it's too long */
 }
+
+input.ebnt {
+    margin-top: 3px;
+    margin-bottom: 3px;
+    margin-right: 3px;
+    margin-left: 3px;
+    border: none;
+    background-color: light-blue;
+    color: light-blue;
+    border-radius: 4px;
+    cursor: pointer;
+}
