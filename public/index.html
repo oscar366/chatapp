@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Minimlist Chat App</title>
-    <link rel="stylesheet" href="index.css">
+    <title>Chat</title>
+    <link rel="stylesheet" href="https://oscar-chat.netlify.app/public/index.css">
 </head>
 <body>
     <div class="container">
@@ -19,8 +19,9 @@
 <input type="button" value="😀" id="1Ebutton" class="ebnt"/>
 <input type="button" value="😢" id="2Ebutton" class="ebnt"/>
 <input type="button" value="🐱" id="3Ebutton" class="ebnt"/>
+<p id="usrname"></p>   
     </div>
-    
+ 
 <script type="text/javascript">
     //js for 😢😀🐱 buttons
 document.getElementById("1Ebutton").addEventListener('click', function () {
@@ -28,10 +29,12 @@ document.getElementById("1Ebutton").addEventListener('click', function () {
     inputBox.value += '😀';
 });
 
+
 document.getElementById("2Ebutton").addEventListener('click', function () {
     var inputBox = document.getElementById('inputBox');
     inputBox.value += '😢';
 });
+
 
 document.getElementById("3Ebutton").addEventListener('click', function () {
     var inputBox = document.getElementById('inputBox');
@@ -39,6 +42,8 @@ document.getElementById("3Ebutton").addEventListener('click', function () {
 });
 </script>
 
+
+    
     
   <script type="module" src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js"></script>
   <script type="module" src="https://www.gstatic.com/firebasejs/9.0.0/firebase-database.js"></script>
